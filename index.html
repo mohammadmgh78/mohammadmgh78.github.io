@@ -1,1 +1,1145 @@
+<!DOCTYPE HTML>
+<html lang="en" data-theme="light">
+<head>
+	<title>Mohammadmahdi Ghasemloo | Texas A&amp;M University</title>
+	<meta name="description" content="Mohammadmahdi Ghasemloo is a Ph.D. student in Industrial Engineering at Texas A&amp;M University researching stochastic simulation, digital twins, uncertainty quantification, and AI-integrated decision systems." />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<!-- Academic font stack: Source Serif 4 (body/display) + Source Sans 3 (UI) + JetBrains Mono (code/labels) -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Source+Sans+3:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
+	<style>
+		/* =====================================================
+		   THEME TOKENS
+		   ===================================================== */
+		:root {
+			--bg:        #f7f5f0;
+			--bg2:       #eeecea;
+			--surface:   #ffffff;
+			--surface2:  #f2efe9;
+			--border:    rgba(0,0,0,0.09);
+			--border2:   rgba(0,0,0,0.05);
+			--accent:    #7a5c2e;
+			--accent-lt: #b8895a;
+			--accent2:   #2e6b7a;
+			--text:      #1a1814;
+			--muted:     #5a5650;
+			--dim:       #9a9590;
+			--heading:   #0f0d0a;
+			--nav-bg:    rgba(247,245,240,0.92);
+			--shadow:    rgba(0,0,0,0.08);
+			--shadow-lg: rgba(0,0,0,0.14);
+			--toggle-bg: #dedad3;
+		}
+
+		[data-theme="dark"] {
+			--bg:        #0f1117;
+			--bg2:       #161920;
+			--surface:   #181c24;
+			--surface2:  #1f2330;
+			--border:    rgba(255,255,255,0.07);
+			--border2:   rgba(255,255,255,0.04);
+			--accent:    #c8a96e;
+			--accent-lt: #d4ba87;
+			--accent2:   #7eb8c9;
+			--text:      #e8e3d8;
+			--muted:     #8a8880;
+			--dim:       #565450;
+			--heading:   #f0ece4;
+			--nav-bg:    rgba(15,17,23,0.88);
+			--shadow:    rgba(0,0,0,0.3);
+			--shadow-lg: rgba(0,0,0,0.5);
+			--toggle-bg: #2a2e3a;
+		}
+
+		/* =====================================================
+		   BASE
+		   ===================================================== */
+		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+		html { scroll-behavior: smooth; }
+
+		body {
+			background: var(--bg);
+			color: var(--text);
+			font-family: 'Source Sans 3', sans-serif;
+			font-weight: 300;
+			font-size: 16px;
+			line-height: 1.75;
+			overflow-x: hidden;
+			transition: background 0.35s ease, color 0.35s ease;
+		}
+
+		strong { font-weight: 600; }
+
+		/* =====================================================
+		   THEME TOGGLE
+		   ===================================================== */
+		.theme-toggle {
+			background: var(--toggle-bg);
+			border: 1px solid var(--border);
+			border-radius: 20px;
+			width: 52px;
+			height: 28px;
+			cursor: pointer;
+			position: relative;
+			transition: background 0.3s;
+			flex-shrink: 0;
+			outline: none;
+		}
+
+		.theme-toggle::after {
+			content: '';
+			position: absolute;
+			top: 3px; left: 3px;
+			width: 20px; height: 20px;
+			border-radius: 50%;
+			background: var(--accent);
+			transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+		}
+
+		[data-theme="dark"] .theme-toggle::after { transform: translateX(24px); }
+
+		.theme-label {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.6rem;
+			letter-spacing: 0.08em;
+			color: var(--dim);
+			text-transform: uppercase;
+			min-width: 2.5rem;
+		}
+
+		.toggle-wrap {
+			display: flex;
+			align-items: center;
+			gap: 0.55rem;
+		}
+
+		/* =====================================================
+		   LAYOUT
+		   ===================================================== */
+		.site-wrapper { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+		/* =====================================================
+		   NAV
+		   ===================================================== */
+		nav {
+			position: fixed;
+			top: 0; left: 0; right: 0;
+			z-index: 200;
+			background: var(--nav-bg);
+			backdrop-filter: blur(18px);
+			-webkit-backdrop-filter: blur(18px);
+			border-bottom: 1px solid var(--border);
+			transition: background 0.35s;
+		}
+
+		.nav-inner {
+			max-width: 1080px;
+			margin: 0 auto;
+			padding: 0 2rem;
+			height: 58px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 1.5rem;
+		}
+
+		.nav-logo {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.0rem;
+			font-weight: 400;
+			font-style: italic;
+			color: var(--accent);
+			text-decoration: none;
+			letter-spacing: 0.01em;
+			white-space: nowrap;
+		}
+
+		.nav-right { display: flex; align-items: center; gap: 2.5rem; }
+
+		.nav-links { display: flex; gap: 2rem; list-style: none; }
+
+		.nav-links a {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.82rem;
+			font-weight: 400;
+			letter-spacing: 0.04em;
+			color: var(--muted);
+			text-decoration: none;
+			transition: color 0.25s;
+		}
+
+		.nav-links a:hover { color: var(--text); }
+
+		/* =====================================================
+		   HERO
+		   ===================================================== */
+		#hero {
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			padding-top: 58px;
+			position: relative;
+			overflow: hidden;
+		}
+
+		[data-theme="light"] #hero::before {
+			content: '';
+			position: absolute; inset: 0;
+			background:
+				radial-gradient(ellipse 70% 70% at 80% 40%, rgba(122,92,46,0.06) 0%, transparent 70%),
+				radial-gradient(ellipse 50% 50% at 10% 70%, rgba(46,107,122,0.05) 0%, transparent 60%);
+		}
+
+		[data-theme="dark"] #hero::before {
+			content: '';
+			position: absolute; inset: 0;
+			background-image:
+				linear-gradient(var(--border) 1px, transparent 1px),
+				linear-gradient(90deg, var(--border) 1px, transparent 1px);
+			background-size: 56px 56px;
+			mask-image: radial-gradient(ellipse 75% 75% at 50% 50%, black 30%, transparent 100%);
+		}
+
+		.orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+		.orb-1 { width: 480px; height: 480px; top: -80px; right: -80px; animation: drift 14s ease-in-out infinite alternate; }
+		.orb-2 { width: 360px; height: 360px; bottom: -60px; left: -60px; animation: drift 18s ease-in-out infinite alternate-reverse; }
+
+		[data-theme="light"] .orb-1 { background: radial-gradient(circle, rgba(122,92,46,0.09) 0%, transparent 70%); }
+		[data-theme="light"] .orb-2 { background: radial-gradient(circle, rgba(46,107,122,0.07) 0%, transparent 70%); }
+		[data-theme="dark"]  .orb-1 { background: radial-gradient(circle, rgba(200,169,110,0.10) 0%, transparent 70%); }
+		[data-theme="dark"]  .orb-2 { background: radial-gradient(circle, rgba(126,184,201,0.07) 0%, transparent 70%); }
+
+		@keyframes drift {
+			from { transform: translate(0,0) scale(1); }
+			to   { transform: translate(24px,18px) scale(1.04); }
+		}
+
+		.hero-content {
+			position: relative; z-index: 1;
+			display: grid;
+			grid-template-columns: 1fr 310px;
+			gap: 5rem;
+			align-items: center;
+			width: 100%; max-width: 1080px;
+			margin: 0 auto;
+			padding: 4rem 2rem;
+		}
+
+		.hero-eyebrow {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.68rem;
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			color: var(--accent);
+			margin-bottom: 1.2rem;
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			animation: fadeUp 0.7s ease both;
+		}
+
+		.hero-eyebrow::before {
+			content: '';
+			display: block; width: 28px; height: 1px;
+			background: var(--accent); flex-shrink: 0;
+		}
+
+		.hero-name {
+			font-family: 'Source Serif 4', serif;
+			font-size: clamp(2.6rem, 4.5vw, 4rem);
+			font-weight: 300;
+			line-height: 1.08;
+			color: var(--heading);
+			margin-bottom: 0.8rem;
+			letter-spacing: -0.01em;
+			animation: fadeUp 0.7s 0.08s ease both;
+		}
+
+		.hero-name em { font-style: italic; color: var(--accent); font-weight: 300; }
+
+		.hero-role {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.9rem;
+			font-weight: 400;
+			color: var(--muted);
+			letter-spacing: 0.04em;
+			margin-bottom: 1.8rem;
+			animation: fadeUp 0.7s 0.16s ease both;
+		}
+
+		.hero-desc {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.0rem;
+			font-weight: 300;
+			color: var(--muted);
+			max-width: 520px;
+			margin-bottom: 2rem;
+			line-height: 1.85;
+			animation: fadeUp 0.7s 0.24s ease both;
+		}
+
+		.hero-tags {
+			display: flex; flex-wrap: wrap; gap: 0.5rem;
+			margin-bottom: 2.5rem;
+			animation: fadeUp 0.7s 0.32s ease both;
+		}
+
+		.tag {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.72rem; font-weight: 400;
+			letter-spacing: 0.04em;
+			padding: 0.25rem 0.75rem;
+			border: 1px solid var(--border);
+			border-radius: 3px;
+			color: var(--muted);
+			background: var(--surface2);
+			transition: all 0.25s;
+		}
+
+		.tag:hover { border-color: var(--accent-lt); color: var(--accent); background: var(--surface); }
+
+		.hero-cta { display: flex; gap: 0.9rem; animation: fadeUp 0.7s 0.4s ease both; }
+
+		.btn {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.82rem; font-weight: 500;
+			letter-spacing: 0.04em;
+			padding: 0.65rem 1.6rem;
+			text-decoration: none;
+			transition: all 0.25s;
+			border-radius: 3px;
+			display: inline-block;
+		}
+
+		.btn-primary { background: var(--accent); color: #fff; }
+		.btn-primary:hover { background: var(--accent-lt); transform: translateY(-1px); box-shadow: 0 6px 20px var(--shadow-lg); }
+		.btn-secondary { border: 1px solid var(--border); color: var(--muted); background: var(--surface); }
+		.btn-secondary:hover { border-color: var(--accent-lt); color: var(--accent); }
+
+		/* =====================================================
+		   PHOTO CARD
+		   ===================================================== */
+		.hero-photo-wrap { position: relative; animation: fadeUp 0.7s 0.24s ease both; }
+
+		.photo-card { position: relative; z-index: 1; }
+
+		.hero-photo-wrap { position: relative; animation: fadeUp 0.7s 0.24s ease both; }
+
+.photo-card { position: relative; z-index: 1; }
+
+.photo-frame {
+    width: 100%;
+    padding-bottom: 133%;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    overflow: hidden;
+    box-shadow: 0 12px 40px var(--shadow);
+    position: relative;
+    z-index: 1;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform 0.5s ease;
+}
+
+.photo-frame:hover img { transform: scale(1.02); }
+
+.photo-frame::before, .photo-frame::after {
+    content: '';
+    position: absolute;
+    width: 22px; height: 22px;
+    z-index: 3;
+}
+
+.photo-frame::before { top: 10px; left: 10px; border-top: 2px solid var(--accent); border-left: 2px solid var(--accent); }
+.photo-frame::after  { bottom: 10px; right: 10px; border-bottom: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+
+.photo-bg {
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    z-index: 0;
+}
+
+.photo-caption {
+    margin-top: 1.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--dim);
+    text-align: center;
+}
+		/* =====================================================
+		   SECTIONS
+		   ===================================================== */
+		section { padding: 6rem 0; border-top: 1px solid var(--border); }
+
+		.section-header {
+			display: flex; align-items: baseline;
+			gap: 1.2rem; margin-bottom: 3.5rem;
+		}
+
+		.section-num {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.65rem; letter-spacing: 0.15em; color: var(--accent);
+		}
+
+		.section-title {
+			font-family: 'Source Serif 4', serif;
+			font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+			font-weight: 400; color: var(--heading);
+			letter-spacing: -0.01em; line-height: 1.1;
+		}
+
+		.section-rule { flex: 1; height: 1px; background: var(--border); }
+
+		/* =====================================================
+		   ABOUT
+		   ===================================================== */
+		.about-grid {
+			display: grid;
+			grid-template-columns: 1fr 370px;
+			gap: 4.5rem; align-items: start;
+		}
+
+		.about-text p {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.0rem; font-weight: 300;
+			color: var(--muted); line-height: 1.9;
+			margin-bottom: 1.3rem;
+		}
+
+		.about-text p:first-child { font-size: 1.08rem; color: var(--text); }
+		.about-text strong { color: var(--text); font-weight: 600; }
+
+		.stats-panel { display: flex; flex-direction: column; gap: 1rem; }
+
+		.stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+		.stat-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 1.2rem 1.4rem;
+			position: relative; overflow: hidden;
+			transition: border-color 0.25s, box-shadow 0.25s;
+		}
+
+		.stat-card::before {
+			content: '';
+			position: absolute; top: 0; left: 0;
+			width: 3px; height: 100%;
+			background: var(--accent);
+			transform: scaleY(0); transform-origin: bottom;
+			transition: transform 0.3s;
+		}
+
+		.stat-card:hover { border-color: var(--accent-lt); box-shadow: 0 4px 16px var(--shadow); }
+		.stat-card:hover::before { transform: scaleY(1); }
+
+		.stat-num {
+			font-family: 'Source Serif 4', serif;
+			font-size: 2.1rem; font-weight: 300;
+			color: var(--accent); line-height: 1; margin-bottom: 0.3rem;
+		}
+
+		.stat-label {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.62rem; letter-spacing: 0.1em;
+			text-transform: uppercase; color: var(--dim);
+		}
+
+		.collab-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px;
+			padding: 1.2rem 1.4rem;
+			display: flex; align-items: flex-start; gap: 1rem;
+		}
+
+		.collab-dot {
+			width: 8px; height: 8px;
+			border-radius: 50%;
+			background: var(--accent);
+			margin-top: 0.45rem; flex-shrink: 0;
+		}
+
+		.collab-text {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.85rem; color: var(--muted); line-height: 1.65;
+		}
+
+		.collab-text strong { color: var(--text); }
+
+		/* =====================================================
+		   PUBLICATIONS
+		   ===================================================== */
+		.pub-list { display: flex; flex-direction: column; }
+
+		.pub-item {
+			padding: 1.8rem 0;
+			border-bottom: 1px solid var(--border2);
+			display: grid;
+			grid-template-columns: 2rem 1fr auto;
+			gap: 1.8rem; align-items: start;
+		}
+
+		.pub-item:first-child { border-top: 1px solid var(--border2); }
+
+		.pub-num {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.62rem; color: var(--dim);
+			padding-top: 0.3rem; letter-spacing: 0.05em;
+		}
+
+		.pub-badge {
+			display: inline-block;
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.58rem; letter-spacing: 0.1em;
+			text-transform: uppercase;
+			padding: 0.18rem 0.55rem;
+			border-radius: 2px; margin-bottom: 0.55rem;
+		}
+
+		.badge-published { background: rgba(46,107,122,0.1); color: var(--accent2); border: 1px solid rgba(46,107,122,0.2); }
+		.badge-review    { background: rgba(122,92,46,0.08);  color: var(--accent);  border: 1px solid rgba(122,92,46,0.2); }
+		.badge-preprint  { background: var(--surface2); color: var(--dim); border: 1px solid var(--border); }
+
+		.pub-title {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.05rem; font-weight: 400;
+			color: var(--text); line-height: 1.5; margin-bottom: 0.4rem;
+		}
+
+		.pub-authors {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.82rem; color: var(--dim); margin-bottom: 0.25rem;
+		}
+
+		.pub-authors strong { color: var(--muted); font-weight: 500; }
+
+		.pub-venue {
+			font-family: 'Source Serif 4', serif;
+			font-size: 0.82rem; font-style: italic; color: var(--dim);
+		}
+
+		.pub-link {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.62rem; letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--accent); text-decoration: none;
+			border: 1px solid var(--border);
+			padding: 0.35rem 0.7rem;
+			border-radius: 3px; white-space: nowrap;
+			align-self: start;
+			transition: all 0.25s;
+			background: var(--surface);
+		}
+
+		.pub-link:hover { border-color: var(--accent-lt); background: var(--surface2); }
+
+		/* =====================================================
+		   PROJECTS
+		   ===================================================== */
+		.project-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.25rem; }
+
+		.project-card {
+			background: var(--surface);
+			border: 1px solid var(--border);
+			border-radius: 4px; padding: 1.8rem;
+			text-decoration: none; display: block;
+			transition: all 0.3s;
+		}
+
+		.project-card:hover {
+			border-color: var(--accent-lt);
+			box-shadow: 0 8px 30px var(--shadow);
+			transform: translateY(-2px);
+		}
+
+		.project-card-header {
+			display: flex; justify-content: space-between;
+			align-items: flex-start; margin-bottom: 0.9rem;
+		}
+
+		.project-icon { font-size: 1.2rem; }
+
+		.project-arrow {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.75rem; color: var(--dim);
+			transition: color 0.25s, transform 0.25s;
+		}
+
+		.project-card:hover .project-arrow { color: var(--accent); transform: translate(2px,-2px); }
+
+		.project-title {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.0rem; font-weight: 400;
+			color: var(--text); margin-bottom: 0.6rem; line-height: 1.4;
+		}
+
+		.project-desc {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.82rem; font-weight: 300;
+			color: var(--muted); line-height: 1.7; margin-bottom: 1.1rem;
+		}
+
+		.project-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+		.tech-tag {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.58rem; letter-spacing: 0.07em;
+			padding: 0.18rem 0.5rem;
+			background: var(--surface2);
+			border: 1px solid var(--border);
+			border-radius: 2px; color: var(--dim);
+			text-transform: uppercase;
+		}
+
+		/* =====================================================
+		   FOOTER
+		   ===================================================== */
+		footer { border-top: 1px solid var(--border); padding: 2.5rem 0; }
+
+		.footer-inner {
+			max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+			display: flex; justify-content: space-between; align-items: center;
+		}
+
+		.footer-copy {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 0.65rem; letter-spacing: 0.08em; color: var(--dim);
+		}
+
+		.footer-links { display: flex; gap: 2rem; list-style: none; }
+
+		.footer-links a {
+			font-family: 'Source Sans 3', sans-serif;
+			font-size: 0.8rem; color: var(--dim);
+			text-decoration: none; transition: color 0.25s;
+		}
+
+		.footer-links a:hover { color: var(--accent); }
+
+		/* =====================================================
+		   ANIMATIONS
+		   ===================================================== */
+		@keyframes fadeUp {
+			from { opacity: 0; transform: translateY(18px); }
+			to   { opacity: 1; transform: translateY(0); }
+		}
+
+		.reveal {
+			opacity: 0; transform: translateY(20px);
+			transition: opacity 0.65s ease, transform 0.65s ease;
+		}
+
+		.reveal.visible { opacity: 1; transform: translateY(0); }
+
+		/* =====================================================
+		   RESPONSIVE
+		   ===================================================== */
+		@media (max-width: 900px) {
+			.hero-content { grid-template-columns: 1fr; padding-top: 3rem; }
+			.hero-photo-wrap { max-width: 260px; margin: 0 auto; }
+			.about-grid { grid-template-columns: 1fr; }
+			.project-grid { grid-template-columns: 1fr; }
+			.pub-item { grid-template-columns: 2rem 1fr; }
+			.pub-link { grid-column: 2; margin-top: 0.5rem; }
+		}
+
+		@media (max-width: 600px) {
+			.nav-links { display: none; }
+			.stats-row { grid-template-columns: 1fr 1fr; }
+		}
+
+		/* =====================================================
+		   EXPERIENCE, TALKS, TEACHING
+		   ===================================================== */
+		:root { --dim: #77726c; }
+		[data-theme="dark"] { --dim: #918e86; --muted: #a8a59c; }
+		section[id] { scroll-margin-top: 58px; }
+		.sub-heading {
+			font-family: 'Source Serif 4', serif;
+			font-size: 1.15rem; font-weight: 400;
+			color: var(--accent);
+			margin: 2.8rem 0 1rem;
+		}
+		.section-header + .sub-heading { margin-top: 0; }
+		.entry { padding: 1.1rem 0; border-bottom: 1px solid var(--border2); }
+		.entry-head { display: flex; justify-content: space-between; gap: 2rem; align-items: baseline; }
+		.entry-title { font-family: 'Source Serif 4', serif; font-size: 1.05rem; font-weight: 400; color: var(--text); line-height: 1.45; }
+		.entry-org { font-size: 0.86rem; color: var(--muted); }
+		.entry-date { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--muted); white-space: nowrap; }
+		.entry-list { margin: 0.6rem 0 0 1.1rem; font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+		.entry-list li { margin-bottom: 0.35rem; }
+		.entry-list a { color: var(--accent); }
+		.talk { display: grid; grid-template-columns: 3.2rem 1fr; gap: 1rem; padding: 0.95rem 0; border-bottom: 1px solid var(--border2); }
+		.talk-year { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); padding-top: 0.25rem; }
+		.talk-venue { font-family: 'Source Serif 4', serif; font-size: 1rem; color: var(--text); line-height: 1.45; }
+		.talk-title { font-size: 0.86rem; color: var(--muted); }
+		.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+		.hero-cta { flex-wrap: wrap; }
+		.footer-inner { flex-wrap: wrap; gap: 1rem; }
+		.footer-links { flex-wrap: wrap; gap: 1rem 2rem; }
+		@media (max-width: 900px) { .pub-link { justify-self: start; } }
+		@media (max-width: 860px) { .nav-links { display: none; } }
+		@media (max-width: 700px) {
+			.two-col { grid-template-columns: 1fr; gap: 0; }
+			.entry-head { flex-direction: column; gap: 0.15rem; }
+			.site-wrapper, .nav-inner, .hero-content, .footer-inner { padding-left: 16px; padding-right: 16px; }
+			.pub-item { gap: 0.8rem; }
+		}
+	</style>
+</head>
+
+<body>
+
+<!-- ========== NAV ========== -->
+<nav>
+	<div class="nav-inner">
+		<a href="#hero" class="nav-logo">Mohammadmahdi Ghasemloo</a>
+		<div class="nav-right">
+			<ul class="nav-links">
+				<li><a href="#about">About</a></li>
+				<li><a href="#experience">Experience</a></li>
+				<li><a href="#publications">Publications</a></li>
+				<li><a href="#talks">Talks</a></li>
+				<li><a href="#teaching">Teaching</a></li>
+				<li><a href="#projects">Projects</a></li>
+			</ul>
+			<div class="toggle-wrap">
+				<span class="theme-label" id="toggle-label">Light</span>
+				<button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode"></button>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+	<div class="orb orb-1"></div>
+	<div class="orb orb-2"></div>
+
+	<div class="hero-content">
+		<div class="hero-text">
+			<div class="hero-eyebrow">Ph.D. Student · Industrial Engineering</div>
+			<h1 class="hero-name">Mohammadmahdi<br>Ghasemloo</h1>
+			<div class="hero-role">Texas A&amp;M University &nbsp;·&nbsp; Data Science Track &nbsp;·&nbsp; College Station, TX</div>
+			<p class="hero-desc">
+				I work on stochastic simulation, digital twins, and AI-integrated decision systems,
+				with a focus on uncertainty quantification, simulation optimization, reinforcement
+				learning, and agentic AI.
+			</p>
+			<div class="hero-tags">
+				<span class="tag">Stochastic Simulation</span>
+				<span class="tag">Digital Twins</span>
+				<span class="tag">Uncertainty Quantification</span>
+				<span class="tag">Simulation Optimization</span>
+				<span class="tag">Reinforcement Learning</span>
+				<span class="tag">Time Series Forecasting</span>
+				<span class="tag">Agentic AI</span>
+			</div>
+			<div class="hero-cta">
+				<a href="#publications" class="btn btn-primary">Publications</a>
+				<a href="https://scholar.google.com/citations?hl=en&amp;user=9jgVJY0AAAAJ" target="_blank" rel="noopener" class="btn btn-secondary">Google Scholar</a>
+				<a href="https://www.linkedin.com/in/mohammadmahdi-ghasemloo-40972a254/" target="_blank" rel="noopener" class="btn btn-secondary">LinkedIn</a>
+			</div>
+		</div>
+
+		<div class="hero-photo-wrap">
+			<div class="photo-card">
+				<div class="photo-frame">
+				<img src="personal_photo.png" alt="Portrait of Mohammadmahdi Ghasemloo" />
+				</div>
+				<div class="photo-bg"></div>
+			</div>
+			<div class="photo-caption">
+				Mohammadmahdi Ghasemloo · Texas A&amp;M
+			</div>
+			</div>
+	</div>
+</section>
+
+<!-- ========== CONTENT ========== -->
+<div class="site-wrapper">
+
+	<!-- ABOUT -->
+	<section id="about">
+		<div class="section-header reveal">
+			<span class="section-num">01</span>
+			<h2 class="section-title">About</h2>
+			<div class="section-rule"></div>
+		</div>
+		<div class="about-grid">
+			<div class="about-text reveal">
+				<p>I am a Ph.D. student in Industrial Engineering (Data Science Track) at Texas A&amp;M University, advised by Dr. David J. Eckman.</p>
+				<p>My research covers stochastic simulation, digital twins, statistical model validation, uncertainty quantification, and simulation-based decision-making. It is supported by the National Science Foundation and Intuit AI.</p>
+				<p>I collaborate with the <strong>Intuit AI Research</strong> team on large-scale simulation optimization, probabilistic forecasting, surrogate-assisted reinforcement learning, and agent-generated simulation models.</p>
+				<p>In summer 2026 I was a Data Scientist Intern at <strong>C3 AI</strong>, working on C3 Code. In fall 2026 I am teaching ISEN 413, Advanced Data Analytics for Industry, at Texas A&amp;M.</p>
+			</div>
+			<div class="reveal" style="transition-delay:0.1s;">
+				<div class="stats-panel">
+					<div class="stats-row">
+						<div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Peer-Reviewed Papers</div></div>
+						<div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Under Review</div></div>
+						<div class="stat-card"><div class="stat-num">9</div><div class="stat-label">Talks &amp; Posters</div></div>
+						<div class="stat-card"><div class="stat-num">5</div><div class="stat-label">GitHub Projects</div></div>
+					</div>
+					<div class="collab-card">
+						<div class="collab-dot"></div>
+						<div class="collab-text"><strong>2nd Place, Best Student Paper Award</strong>, Modeling &amp; Simulation Division, IISE Annual Conference 2026.</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- EXPERIENCE -->
+	<section id="experience">
+		<div class="section-header reveal">
+			<span class="section-num">02</span>
+			<h2 class="section-title">Experience &amp; Education</h2>
+			<div class="section-rule"></div>
+		</div>
+
+		<h3 class="sub-heading reveal">Experience</h3>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Data Scientist Intern, C3 Code</div><div class="entry-org">C3 AI · Redwood City, CA</div></div>
+				<div class="entry-date">Jun 2026 – Aug 2026</div>
+			</div>
+			<ul class="entry-list">
+				<li>Worked on C3 Code, an AI chatbot that generates enterprise applications with machine learning, optimization, and simulation components.</li>
+				<li>Developed benchmarks and evaluation rubrics for coding agents, and analyzed tool usage, cost, and user sessions to improve agent performance and reliability.</li>
+				<li>Designed agent workflows that iteratively generate, evaluate, and improve optimization models and machine learning pipelines.</li>
+			</ul>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Research Collaboration</div><div class="entry-org">Intuit AI Research Team</div></div>
+				<div class="entry-date">Aug 2024 – Present</div>
+			</div>
+			<ul class="entry-list">
+				<li>Built a machine-learning-driven simulation optimization framework, a probabilistic multivariate time series forecasting model, and a large-scale simulation digital twin of operational services.</li>
+				<li>Developed surrogate-assisted deep reinforcement learning, achieving about 4× faster training and 2× faster retraining than direct simulation-based training.</li>
+				<li>Modeled the dependence between patience and service times from censored data, yielding up to about 60% more accurate KPI estimation than independence assumptions.</li>
+				<li>Investigating software-testing and statistical-validation methods for agent-generated simulation models and digital twins.</li>
+			</ul>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Graduate Research Assistant</div><div class="entry-org">Texas A&amp;M University · College Station, TX</div></div>
+				<div class="entry-date">Aug 2023 – Present</div>
+			</div>
+			<ul class="entry-list">
+				<li>Conduct research in stochastic simulation, digital twins, statistical model validation, and uncertainty quantification, supported by NSF and Intuit AI.</li>
+				<li>Developed a regularized Wasserstein clustering algorithm for simulation outputs, on average 5× faster than existing approaches, and released it as the Python package <a href="https://pypi.org/project/distclust/" target="_blank" rel="noopener">distclust</a>.</li>
+			</ul>
+		</div>
+
+		<h3 class="sub-heading reveal">Education</h3>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Ph.D. in Industrial Engineering, Data Science Track</div><div class="entry-org">Texas A&amp;M University · Advisor: Dr. David J. Eckman</div></div>
+				<div class="entry-date">Aug 2023 – Present</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">M.S. in Industrial Engineering, Data Science Track</div><div class="entry-org">Texas A&amp;M University · Advisor: Dr. David J. Eckman</div></div>
+				<div class="entry-date">Aug 2023 – Dec 2025</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">B.S. in Industrial Engineering</div><div class="entry-org">Sharif University of Technology · Tehran, Iran</div></div>
+				<div class="entry-date">Sep 2018 – Jul 2023</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- PUBLICATIONS -->
+	<section id="publications">
+		<div class="section-header reveal">
+			<span class="section-num">03</span>
+			<h2 class="section-title">Publications</h2>
+			<div class="section-rule"></div>
+		</div>
+
+		<h3 class="sub-heading reveal">Journal Articles</h3>
+		<div class="pub-list">
+			<div class="pub-item reveal">
+				<div class="pub-num">01</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-published">Published · PLOS ONE</span>
+					<div class="pub-title">Informed Forecasting: Leveraging Auxiliary Knowledge to Boost Large Language Model Performance on Time Series Forecasting</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, Alireza Moradi</div>
+					<div class="pub-venue">PLOS ONE, 21(10), e0358970, 2026</div>
+				</div>
+				<a href="https://doi.org/10.1371/journal.pone.0358970" target="_blank" rel="noopener" class="pub-link">PLOS ↗</a>
+			</div>
+			<div class="pub-item reveal">
+				<div class="pub-num">02</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-published">Published · INFORMS IJDS</span>
+					<div class="pub-title">An Agglomerative Clustering Algorithm for Simulation Output Distributions Using Regularized Wasserstein Distance</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman</div>
+					<div class="pub-venue">INFORMS Journal on Data Science, 5(1), 65–80, 2026</div>
+				</div>
+				<a href="https://pubsonline.informs.org/doi/abs/10.1287/ijds.2024.0056" target="_blank" rel="noopener" class="pub-link">INFORMS ↗</a>
+			</div>
+		</div>
+
+		<h3 class="sub-heading reveal">Conference Proceedings</h3>
+		<div class="pub-list">
+			<div class="pub-item reveal">
+				<div class="pub-num">03</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-review">Accepted · WSC 2026</span>
+					<div class="pub-title">Subtrace-Conditional Validation of Simulation Models and Digital Twins</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman, Yaxian Li</div>
+					<div class="pub-venue">Proceedings of the 2026 Winter Simulation Conference</div>
+				</div>
+				<a href="https://arxiv.org/abs/2607.17088" target="_blank" rel="noopener" class="pub-link">arXiv ↗</a>
+			</div>
+			<div class="pub-item reveal">
+				<div class="pub-num">04</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-published">Published · IISE 2026</span>
+					<div class="pub-title">Accelerating Reinforcement Learning Training Using Simulation Surrogate Models</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman, Yaxian Li</div>
+					<div class="pub-venue">Proceedings of the IISE Annual Conference 2026 · 2nd Place, Best Student Paper Award</div>
+				</div>
+				<a href="https://arxiv.org/abs/2605.27556" target="_blank" rel="noopener" class="pub-link">arXiv ↗</a>
+			</div>
+			<div class="pub-item reveal">
+				<div class="pub-num">05</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-published">Published · WSC 2025</span>
+					<div class="pub-title">Quantifying Uncertainty from Machine Learning Surrogate Models Embedded in Simulation Models</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman, Yaxian Li</div>
+					<div class="pub-venue">Proceedings of the 2025 Winter Simulation Conference, 3418–3429</div>
+				</div>
+				<a href="https://ieeexplore.ieee.org/abstract/document/11339010" target="_blank" rel="noopener" class="pub-link">IEEE ↗</a>
+			</div>
+		</div>
+
+		<h3 class="sub-heading reveal">Manuscripts Under Review</h3>
+		<div class="pub-list">
+			<div class="pub-item reveal">
+				<div class="pub-num">06</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-review">Minor Revision · INFORMS IJDS</span>
+					<div class="pub-title">Quantifying and Attributing Submodel Uncertainty in Stochastic Simulation Models and Digital Twins</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman, Yaxian Li</div>
+					<div class="pub-venue">INFORMS Journal on Data Science, Virtual Special Issue on Data Science for Digital Twin Technologies</div>
+				</div>
+				<a href="https://arxiv.org/abs/2602.16099" target="_blank" rel="noopener" class="pub-link">arXiv ↗</a>
+			</div>
+			<div class="pub-item reveal">
+				<div class="pub-num">07</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-review">Under Review · NRL</span>
+					<div class="pub-title">Subtrace-Conditional Validation of Stochastic Digital Twins</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, David J. Eckman, Yaxian Li</div>
+					<div class="pub-venue">Naval Research Logistics</div>
+				</div>
+			</div>
+		</div>
+
+		<h3 class="sub-heading reveal">Preprints</h3>
+		<div class="pub-list">
+			<div class="pub-item reveal">
+				<div class="pub-num">08</div>
+				<div class="pub-body">
+					<span class="pub-badge badge-preprint">Preprint · SSRN</span>
+					<div class="pub-title">Forecasting the Future: Has GPT-5 Improved Time Series Forecasting Accuracy over GPT-4?</div>
+					<div class="pub-authors"><strong>Mohammadmahdi Ghasemloo</strong>, Alireza Moradi</div>
+					<div class="pub-venue">SSRN preprint</div>
+				</div>
+				<a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5402179" target="_blank" rel="noopener" class="pub-link">SSRN ↗</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- TALKS -->
+	<section id="talks">
+		<div class="section-header reveal">
+			<span class="section-num">04</span>
+			<h2 class="section-title">Talks &amp; Posters</h2>
+			<div class="section-rule"></div>
+		</div>
+		<div class="talk reveal"><div class="talk-year">2026</div><div><div class="talk-venue">IISE Annual Conference, Arlington, TX</div><div class="talk-title">Accelerating Reinforcement Learning Training Using Simulation Surrogate Models · Oral</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2026</div><div><div class="talk-venue">Zorich's Workshop on Applied Statistics &amp; AI, Texas A&amp;M University</div><div class="talk-title">Digital Twins with Embedded Reinforcement Learning Agents · Oral</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2026</div><div><div class="talk-venue">Texas Digital Twin Symposium, Texas A&amp;M University</div><div class="talk-title">Quantifying Submodel Uncertainty in Digital Twins · Poster</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2025</div><div><div class="talk-venue">Winter Simulation Conference, Seattle, WA</div><div class="talk-title">Quantifying Uncertainty from Machine Learning Surrogate Models Embedded in Simulation Models · Oral</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2025</div><div><div class="talk-venue">INFORMS Annual Meeting, Atlanta, GA</div><div class="talk-title">Quantifying Uncertainty from Machine Learning Surrogate Models Embedded in Simulation Models · Oral</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2025</div><div><div class="talk-venue">Zorich's Applied Statistics Workshop, Texas A&amp;M University</div><div class="talk-title">Modeling Dependent Service and Patience Time in Service Systems · TidBit Session Prize</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2024</div><div><div class="talk-venue">Winter Simulation Conference, Orlando, FL</div><div class="talk-title">An Agglomerative Clustering Algorithm for Simulation Output Distributions Using Regularized Wasserstein Distance · Poster</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2024</div><div><div class="talk-venue">INFORMS Annual Meeting, Seattle, WA</div><div class="talk-title">An Agglomerative Clustering Algorithm for Simulation Output Distributions Using Regularized Wasserstein Distance · Oral</div></div></div>
+		<div class="talk reveal"><div class="talk-year">2024</div><div><div class="talk-venue">Zorich's Reliability Workshop, Texas A&amp;M University</div><div class="talk-title">Distributional Analysis of Simulation Outputs · Poster</div></div></div>
+	</section>
+
+	<!-- TEACHING, HONORS, SERVICE -->
+	<section id="teaching">
+		<div class="section-header reveal">
+			<span class="section-num">05</span>
+			<h2 class="section-title">Teaching, Honors &amp; Service</h2>
+			<div class="section-rule"></div>
+		</div>
+		<h3 class="sub-heading reveal">Teaching</h3>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Instructor, ISEN 413: Advanced Data Analytics for Industry</div><div class="entry-org">Graduate Assistant Lecturer, Texas A&amp;M University · About 30 students</div></div>
+				<div class="entry-date">Fall 2026</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Head Teaching Assistant, Quality Control</div><div class="entry-org">Sharif University of Technology · Dr. Majid Rafiei</div></div>
+				<div class="entry-date">Fall 2022</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Teaching Assistant, Engineering Statistics</div><div class="entry-org">Sharif University of Technology · Dr. Majid Khedmati</div></div>
+				<div class="entry-date">Fall 2022</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Teaching Assistant, Manufacturing Processes</div><div class="entry-org">Sharif University of Technology · Dr. Shokraneh Khashkhashi</div></div>
+				<div class="entry-date">Spring 2022</div>
+			</div>
+		</div>
+		<div class="entry reveal">
+			<div class="entry-head">
+				<div><div class="entry-title">Teaching Assistant, Engineering Economics</div><div class="entry-org">Sharif University of Technology · Dr. Siyavash Valizadeh</div></div>
+				<div class="entry-date">Fall 2021</div>
+			</div>
+		</div>
+
+		<div class="two-col">
+			<div class="reveal">
+				<h3 class="sub-heading">Honors &amp; Awards</h3>
+				<ul class="entry-list">
+					<li>Best Student Paper Award, 2nd Place, Modeling &amp; Simulation Division, IISE Annual Conference, 2026</li>
+					<li>Milden and Mary Fox Fellowship</li>
+					<li>TidBit Session Prize, Zorich's Applied Statistics Workshop, Texas A&amp;M University, 2025</li>
+					<li>Travel Award, INFORMS Annual Meeting, 2024 and 2025</li>
+					<li>Full Fellowship, Ph.D. Program, Texas A&amp;M University</li>
+				</ul>
+			</div>
+			<div class="reveal">
+				<h3 class="sub-heading">Service &amp; Memberships</h3>
+				<ul class="entry-list">
+					<li>External Student, Data and Systems Science in Public Health, MJ Lab, Harvard Medical School</li>
+					<li>Reviewer, Winter Simulation Conference (Data Science and Simulation; Simulation and Artificial Intelligence tracks)</li>
+					<li>Member, IISE and INFORMS, including the INFORMS Quality, Statistics, and Reliability Section and Data Mining Society</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- PROJECTS -->
+	<section id="projects">
+		<div class="section-header reveal">
+			<span class="section-num">06</span>
+			<h2 class="section-title">GitHub Projects</h2>
+			<div class="section-rule"></div>
+		</div>
+		<div class="project-grid">
+			<a href="https://github.com/mohammadmgh78/Subtrace_Conditional" target="_blank" rel="noopener" class="project-card reveal">
+				<div class="project-card-header"><div class="project-icon">🔍</div><div class="project-arrow">↗</div></div>
+				<div class="project-title">Subtrace-Conditional Validation</div>
+				<div class="project-desc">Code for subtrace-conditional validation of simulation models and digital twins.</div>
+				<div class="project-tech"><span class="tech-tag">Digital Twins</span><span class="tech-tag">Validation</span><span class="tech-tag">Simulation</span></div>
+			</a>
+			<a href="https://github.com/mohammadmgh78/Informed-Forecasting" target="_blank" rel="noopener" class="project-card reveal">
+				<div class="project-card-header"><div class="project-icon">🔮</div><div class="project-arrow">↗</div></div>
+				<div class="project-title">Informed Forecasting with LLMs</div>
+				<div class="project-desc">Covariate-informed time series forecasting with general-purpose LLMs, evaluated on influenza case, call center, and airline passenger data.</div>
+				<div class="project-tech"><span class="tech-tag">LLMs</span><span class="tech-tag">Time Series</span><span class="tech-tag">Forecasting</span></div>
+			</a>
+			<a href="https://github.com/mohammadmgh78/Agglomerative_Clustering_Distribution" target="_blank" rel="noopener" class="project-card reveal">
+				<div class="project-card-header"><div class="project-icon">📊</div><div class="project-arrow">↗</div></div>
+				<div class="project-title">Agglomerative Clustering of Distributions</div>
+				<div class="project-desc">Research implementation clustering simulation output distributions using regularized Wasserstein distance for digital twins and simulation optimization under input uncertainty.</div>
+				<div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Wasserstein Distance</span><span class="tech-tag">Clustering</span><span class="tech-tag">Digital Twins</span></div>
+			</a>
+			<a href="https://github.com/mohammadmgh78/Autoencoder_EEG" target="_blank" rel="noopener" class="project-card reveal">
+				<div class="project-card-header"><div class="project-icon">🧠</div><div class="project-arrow">↗</div></div>
+				<div class="project-title">Autoencoder EEG: Preictal Change Point Detection</div>
+				<div class="project-desc">Python pipeline for EEG analysis using autoencoders to detect preictal change points and model seizure onset variability. Built on the CHB-MIT dataset with probabilistic modeling.</div>
+				<div class="project-tech"><span class="tech-tag">Python</span><span class="tech-tag">Autoencoders</span><span class="tech-tag">EEG</span><span class="tech-tag">Probabilistic Modeling</span></div>
+			</a>
+			<a href="https://github.com/mohammadmgh78/Applied-ML-Projects" target="_blank" rel="noopener" class="project-card reveal">
+				<div class="project-card-header"><div class="project-icon">⚙️</div><div class="project-arrow">↗</div></div>
+				<div class="project-title">Applied Machine Learning Projects</div>
+				<div class="project-desc">Collection of applied ML pipelines: time series forecasting, churn prediction, multi-target regression, and reinforcement learning for large-scale operational systems.</div>
+				<div class="project-tech"><span class="tech-tag">ML Pipelines</span><span class="tech-tag">Forecasting</span><span class="tech-tag">RL</span><span class="tech-tag">Operations</span></div>
+			</a>
+		</div>
+	</section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+	<div class="footer-inner">
+		<div class="footer-copy">© 2026 Mohammadmahdi Ghasemloo</div>
+		<ul class="footer-links">
+			<li><a href="mailto:mohammad_ghasemloo@tamu.edu">Email</a></li>
+			<li><a href="https://scholar.google.com/citations?hl=en&amp;user=9jgVJY0AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+			<li><a href="https://www.linkedin.com/in/mohammadmahdi-ghasemloo-40972a254/" target="_blank" rel="noopener">LinkedIn</a></li>
+			<li><a href="https://github.com/mohammadmgh78" target="_blank" rel="noopener">GitHub</a></li>
+		</ul>
+	</div>
+</footer>
+
+<script>
+	// ===== Theme Toggle =====
+	const html = document.documentElement;
+	const btn  = document.getElementById('themeToggle');
+	const lbl  = document.getElementById('toggle-label');
+
+	// Respect OS preference on first load
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	if (prefersDark) { html.setAttribute('data-theme', 'dark'); lbl.textContent = 'Dark'; }
+
+	btn.addEventListener('click', () => {
+		const isDark = html.getAttribute('data-theme') === 'dark';
+		html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+		lbl.textContent = isDark ? 'Light' : 'Dark';
+	});
+
+	// ===== Scroll Reveal =====
+	const observer = new IntersectionObserver((entries) => {
+		entries.forEach(e => {
+			if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+		});
+	}, { threshold: 0.1 });
+
+	document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+	document.querySelectorAll('.pub-item').forEach((el, i) => { el.style.transitionDelay = `${i * 0.06}s`; });
+	document.querySelectorAll('.project-card').forEach((el, i) => { el.style.transitionDelay = `${i * 0.08}s`; });
+</script>
+
+</body>
+</html>
